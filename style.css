@@ -1,8 +1,17 @@
+@font-face {
+    font-family: "titlefont";
+    src: url(fonts/orange\ juice\ 2.0.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "menufont";
+    src: url(fonts/Little\ Ghost.otf) format("truetype");
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: 1px solid black;
 }
 
 .theme-light {
@@ -25,9 +34,14 @@
 }
 
 #themeSwitch {
+    margin: 5px 5px 5px 5px;
     width:40px;
     height:40px;
     border-radius: 20px;
+    background-color: var(--color-primary);
+    background-position: center center;
+    background-size: contain;
+    transition:1s;
 }
 
 body {
@@ -38,12 +52,14 @@ body {
     background-color: var(--color-primary);
     color: var(--font-color);
     transition: 1s;
+    user-select: none;
 }
 
 .header {
     padding:20px 20px 20px 20px;
-    font-size: 60px;
+    font-size: 120px;
     text-align: center;
+    font-family: titlefont;
 }
 
 .main {
@@ -53,49 +69,141 @@ body {
 }
 
 .menu {
-    width:200px;
+    width:150px;
     height:500px;
     display: flex;
     flex-direction: column;
+    font-family: menufont;
+    font-size: 40px;
 }
 
 .display {
-    flex-shrink: 0;
+    font-family: menufont;
+    font-size: 30px;
     width:500px;
     height:500px;
+    background-color: var(--color-primary);
+    border-radius: 0 25px 25px 25px;
 }
 
 .menudisplay {
     position:absolute;
+    overflow: hidden;
     width:0px;
     transition: 0.5s;
     height:500px;
+    border-radius: 0 25px 25px 25px;
 }
 
 .menudisplay,
-#themeSwitch,
 .menubtn {
     background-color: var(--color-secondary);
     color: var(--font-color);
+/* https://smoothshadows.com/#djEsMSw1LDAuMjUsMjQsMjUsMzEsIzAzMDcxMiwjZjNmNGY2LCNmZmZmZmYsMg%3D%3D */
+box-shadow: 1px 1px 1px rgba(3, 7, 18, 0.05),
+  5px 4px 4px rgba(3, 7, 18, 0.10),
+  11px 9px 9px rgba(3, 7, 18, 0.15),
+  20px 16px 15px rgba(3, 7, 18, 0.20),
+  31px 25px 24px rgba(3, 7, 18, 0.25);
 }
 
-.menudisplay:hover,
+.menubtn {
+    height: 50px;
+    border-radius: 25px 0 0 25px ;
+    text-align: center;
+}
+
 .menubtn:hover {
-    border-left: 1px solid var(--color-accent);
-    border-top: 1px solid var(--color-accent);
-    border-bottom: 1px solid var(--color-accent);
-}
-
-#themeSwitch:hover {
-    border: 1px solid var(--color-accent);
+    border-left: 2px solid var(--color-secondary);
+    border-top: 2px solid var(--color-secondary);
+    border-bottom: 2px solid var(--color-secondary);
 }
 
 span {
-    width:200px;
+    width:150px;
 }
 
 .footer {
     padding: 5px 5px 5px 5px;
     text-align: right;
     margin-top: auto;
+}
+
+/* menu&display internal */
+
+#menudisplay1 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#menudisplay2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menudisplay3 {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#menudisplay0 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.displaybtn {
+    font-size: 60px;
+}
+
+.displaybtn:hover {
+    border-top: 4px solid var(--color-secondary)
+}
+
+.row {
+    display:flex;
+}
+label {
+    padding: 0 0 0 5px;
+}
+
+.displaylbl {
+    font-size: 40px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.displaytxt {
+    font-size: 40px;
+}
+
+input[type=radio] {
+    accent-color: var(--color-secondary);
+    transform: scale(1.5);
+}
+
+#boardDisplay {
+    width:450px;
+    height:450px;
+    justify-self: stretch;
+    background-color: var(--color-primary);
+    color:var(--font-color);
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+#boardDisplay > * {
+    border:1px solid var(--font-color)
+}
+
+#boardDisplay>*:hover {
+    background-color: var(--color-accent);
 }

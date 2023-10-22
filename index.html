@@ -15,16 +15,74 @@
 
     <div class="main">
         <div class="menu">
-            <div id="menubtn1" class="menubtn">New Game</div>
+            <div id="menubtn1" class="menubtn">Settings</div>
             <div id="menubtn2" class="menubtn">Board</div>
             <div id="menubtn3" class="menubtn">Results</div>
         </div>
         <div class="display">
             <div id="menudisplay1" class="menudisplay">
-
+                <div class="column">
+                    <div class="displaytxt">Player 1</div>
+                        <div class="row">
+                            <input type="radio" name="p1radio" id="xhuman" checked="true">
+                            <label for="xhuman"> Human</label>
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="p1radio" id="xaidumb">
+                            <label for="xaidumb"> AI (dumb)</label>
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="p1radio" id="xaismart">
+                            <label for="xaisamrt"> AI (smart)</label>
+                        </div>
+                </div>
+                <div class="column">
+                    <div class="displaytxt">Player 2</div>
+                        <div class="row">
+                            <input type="radio" name="p2radio" id="ohuman" checked="true">
+                            <label for="ohuman">Human</label>
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="p2radio" id="oaidumb">
+                            <label for="oaidumb">AI (dumb)</label>
+                        </div>
+                        <div class="row">
+                            <input type="radio" name="p2radio" id="oaismart">
+                            <label for="oaismart">AI (smart)</label>
+                        </div>
+                </div>
             </div>
-            <div id="menudisplay2" class="menudisplay">item2</div>
-            <div id="menudisplay3" class="menudisplay">item3</div>
+            <div id="menudisplay2" class="menudisplay">
+                <div id="boardDisplay">
+                    <div id="boardTile11"></div>
+                    <div id="boardTile12"></div>
+                    <div id="boardTile13"></div>
+                    <div id="boardTile21"></div>
+                    <div id="boardTile22"></div>
+                    <div id="boardTile23"></div>
+                    <div id="boardTile31"></div>
+                    <div id="boardTile32"></div>
+                    <div id="boardTile33"></div>
+                </div>
+            </div>
+            <div id="menudisplay3" class="menudisplay">
+                <div class="row">
+                    <div class="displaytxt">Games Played:</div>
+                    <div class="displaylbl" id="gamesplayedstat">0</div>
+                </div>
+                <div class="row">
+                    <div class="displaytxt">Player 1 Won:</div>
+                    <div class="displaylbl" id="xwonstat">0</div>
+                </div>
+                <div class="row">
+                    <div class="displaytxt">Player 2 Won:</div>
+                    <div class="displaylbl" id="owonstat">0</div>
+                </div>
+            </div>
+            <div id="menudisplay0" class="menudisplay">
+                <div id="playmsg" class="displaytxt"></div>
+                <div id="playbtn" class="displaybtn">Play</div>
+            </div>
         </div>
         <span></span>
     </div>
