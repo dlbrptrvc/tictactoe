@@ -80,17 +80,26 @@ for (let i=0;i<3;i++){
         window['boardTile'+i.toString()+j.toString()].addEventListener('click',(event)=>{
             if (currentGame.state=='on' && currentGame.board[i][j].length==0
             && currentGame.player[currentGame.turn].type=='human') {
-                currentGame.board[i][j]=currentGame.turn
-                event.target.textContent = currentGame.piece[currentGame.turn]
-                currentGame.player[currentGame.turn].tiles.push([i,j].toString())
-                let status = currentGame.winCheck()
-                if (status !== 'playing') {
-                    currentGame.state = 'over'
-                    declare(status)
-                }
-                currentGame.turn = (currentGame.turn+1)%2
+                placeMark(i,j,currentGame)
             }
         })
+    }
+}
+
+//placemark fnc
+function placeMark(i,j,game) {
+    game.board[i][j]=game.turn
+    window['boardTile'+i.toString()+j.toString()].textContent = game.piece[game.turn]
+    game.player[game.turn].tiles.push([i,j].toString())
+    let status = game.winCheck()
+    if (status !== 'playing') {
+        game.state = 'over'
+        declare(status)
+    } else {
+        game.turn = (game.turn+1)%2
+        if (game.player[game.turn].type=='aidumb'){
+            runAIDUMB(game)
+        }
     }
 }
 
@@ -99,7 +108,9 @@ let radios = Array.from(document.querySelectorAll('input'))
 radios.forEach((item)=>{
     item.addEventListener('click',()=>{
         currentGame.player[0].type = document.querySelector('input[name="p1radio"]:checked').value
-        currentGame.player[1].type = document.querySelector('input[name="p2radio"]:checked').value        
+        currentGame.player[1].type = document.querySelector('input[name="p2radio"]:checked').value
+        if (currentGame.player[currentGame.turn].type=='aidumb') {
+            runAIDUMB(currentGame)  }      
     })
 })
 
@@ -114,6 +125,9 @@ playbtn.addEventListener('click',()=>{
     playmsg.textContent = ''
     menudisplay0.style.backgroundColor = 'var(--color-secondary)'
     menubtn2.click()
+    if (currentGame.player[0].type=='aidumb') {
+        runAIDUMB(currentGame)
+    }
 })
 
 
