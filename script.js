@@ -109,8 +109,9 @@ radios.forEach((item)=>{
     item.addEventListener('click',()=>{
         currentGame.player[0].type = document.querySelector('input[name="p1radio"]:checked').value
         currentGame.player[1].type = document.querySelector('input[name="p2radio"]:checked').value
-        if (currentGame.player[currentGame.turn].type=='aidumb') {
-            runAIDUMB(currentGame)  }      
+        if (currentGame.player[currentGame.turn].type=='aidumb' &&
+        currentGame.state=='on' && aiOnTheMove==0) {
+            runAIDUMB(currentGame)}      
     })
 })
 

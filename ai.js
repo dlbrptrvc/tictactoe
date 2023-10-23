@@ -1,4 +1,7 @@
+let aiOnTheMove = 0
+
 function runAIDUMB(game) {
+    aiOnTheMove++
     let x = 0
     let y = 0
     let empty = false
@@ -7,5 +10,8 @@ function runAIDUMB(game) {
         y = Math.floor(Math.random()*3)
         if (game.board[x][y].length==0) {empty=true}
     } while (!empty)
-    setTimeout(()=>{placeMark(x,y,game)},900)
+    setTimeout(()=>{
+        placeMark(x,y,game)
+        aiOnTheMove--
+    },900)
 }
