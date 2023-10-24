@@ -7,7 +7,7 @@ function Player(type,tiles) {
 //gen game class and currentGame
 function Game(board) {
     this.board = board||[[[],[],[]],[[],[],[]],[[],[],[]]]
-    this.player = [new Player('human'),new Player('human')]
+    this.player = [{type:'human',tiles:[]},{type:'human',tiles:[]}]
     this.turn = 0
     this.state = 'off'
     this.piece = ['x','o']
@@ -89,8 +89,8 @@ for (let i=0;i<3;i++){
 //placemark fnc
 function placeMark(i,j,game) {
     game.board[i][j]=game.turn
-    window['boardTile'+i.toString()+j.toString()].textContent = game.piece[game.turn]
     game.player[game.turn].tiles.push([i,j].toString())
+    window['boardTile'+i.toString()+j.toString()].textContent = game.piece[game.turn]
     let status = game.winCheck()
     if (status !== 'playing') {
         game.state = 'over'
@@ -99,6 +99,9 @@ function placeMark(i,j,game) {
         game.turn = (game.turn+1)%2
         if (game.player[game.turn].type=='aidumb'){
             runAIDUMB(game)
+        }
+        if (game.player[game.turn].type=='aismart'){
+            runAISMART(game)
         }
     }
 }
@@ -111,7 +114,10 @@ radios.forEach((item)=>{
         currentGame.player[1].type = document.querySelector('input[name="p2radio"]:checked').value
         if (currentGame.player[currentGame.turn].type=='aidumb' &&
         currentGame.state=='on' && aiOnTheMove==0) {
-            runAIDUMB(currentGame)}      
+            runAIDUMB(currentGame)}
+        if (currentGame.player[currentGame.turn].type=='aismart' &&
+        currentGame.state=='on' && aiOnTheMove==0) {
+            runAISMART(currentGame)}             
     })
 })
 
@@ -128,6 +134,9 @@ playbtn.addEventListener('click',()=>{
     menubtn2.click()
     if (currentGame.player[0].type=='aidumb') {
         runAIDUMB(currentGame)
+    }
+    if (currentGame.player[0].type=='aismart') {
+        runAISMART(currentGame)
     }
 })
 
